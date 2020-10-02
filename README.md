@@ -13,15 +13,19 @@
 
 #Interface
 ##Les Onglets disponible
-###Input 
+-   Input
+    -
 Dans l'onglet input on a un analyseur de text qui va nous répondre si le sentiment est positif ou 
 négatif selon le texte entrée.
-###Training
+-   Training
+    -      
 Dans l'onglet training on réentraîne notre analyseur de text avec le dataset de base "corpus.csv" on a par la suite quelques metrics:
 - accuracy
 - nombre de document
-###TrainingCustom
-Dans l'onglet training custom on réentraîne notre analyseur de text avec un dataset choisi 
+
+- TrainingCustom
+    -          
+    Dans l'onglet training custom on réentraîne notre analyseur de text avec un dataset choisi 
 et comme pour un training normal on a par la suite quelques metrics.
 ##Les routes
 ###routes principales

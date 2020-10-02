@@ -4,6 +4,8 @@ from stop_words import get_stop_words
 from nltk.corpus import stopwords
 import pickle
 
+global CLS
+global LOADED_VEC
 FR = SnowballStemmer('french')
 MY_STOP_WORD_LIST = get_stop_words('french')
 FINAL_STOPWORDS_LIST = stopwords.words('french')

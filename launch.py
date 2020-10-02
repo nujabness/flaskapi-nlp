@@ -22,7 +22,7 @@ def home():
 @app.route("/resultTrainingCustom", methods=['POST'])
 def resultTrainingCustom():
     name = request.form.get('nameData')
-    data = pd.read_csv(name)
+    data = pd.read_csv("./data/"+name)
     metrics = doTraining(data)
     return render_template("trainingCustomResponse.html", title='ResultTrainingCustom', metrics=metrics)
 
@@ -36,7 +36,7 @@ def result():
 
 @app.route("/training")
 def training():
-    data = pd.read_csv("corpus.csv")
+    data = pd.read_csv("./data/corpus.csv")
     metrics = doTraining(data)
     return render_template("training.html", title='Training', metrics=metrics)
 
@@ -61,8 +61,8 @@ def trainingCustom():
 @app.route("/prediction", methods=['POST'])
 def prediction():
     user_text = request.form.get('input_text')
-    valeurText = getPrediction(user_text)
-    return json.dumps({'Le texte est': valeurText})
+    res = getPrediction(user_text)
+    return json.dumps({'Le texte est': res})
 
 
 def getPrediction(user_text):
@@ -72,27 +72,29 @@ def getPrediction(user_text):
         valeurText = "Positif"
     else:
         valeurText = "Négatif"
-    return valeurText
-
+    proba = round(tools.CLS.predict_proba(user).max(),2)*100
+    return {
+        "valeurText": valeurText,
+        "proba": proba
+    }
 
 @app.route("/entrainement", methods=['POST'])
 def entrainement():
-    data = pd.read_csv('corpus.csv')
+    data = pd.read_csv('./data/corpus.csv')
     score = doTraining(data)
     return json.dumps({'Le training est fini le score est de: ': score})
 
 
 def doTraining(data):
     x = tools.vectorisation(data['review'].apply(nettoyage))
-    pickle.dump(tools.VECTORIZER.vocabulary_, open("base.pkl", "wb"))
+    pickle.dump(tools.VECTORIZER.vocabulary_, open("./data/base.pkl", "wb"))
 
     y = tools.labelisation(data)
 
     x_train, x_val, y_train, y_val = train_test_split(x, y, test_size=0.2)
 
     cls = LogisticRegression(max_iter=300).fit(x_train, y_train)
-    pickle.dump(cls, open("model.pkl", "wb"))
-
+    pickle.dump(cls, open("./data/model.pkl", "wb"))
     return {
         "accuracy": round(cls.score(x_val, y_val),2)*100,
         "size": len(data['review'])
