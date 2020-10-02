@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Output datas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css" integrity="sha512-ZRv40llEogRmoWgZwnsqke3HNzJ0kiI0+pcMgiz2bxO6Ew1DVBtWjVn0qjrXdT3+u+pSN36gLgmJiiQ3cQtyzA==" crossorigin="anonymous" />
+  </head>
+  <body>
+  <section class="hero has-background-warning">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <h1 class="title has-text-white">
+              Natural Language Processing
+            </h1>
+            <h4 class="subtitle has-text-white">
+              <i>Vectorise for win</i>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="container mt-3">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="mt-6">
+          <h1 class="subtitle">Training Custom Result</h1>
+        </div>
+        <div class="mt-3">
+          <p class="is-medium">L'entrainement a une accuration de : <b><i>{{ metrics.accuracy }}</i></b> avec <b>{{ metrics.size }}</b> documents.</p>
+        </div>
+        <div class="mt-3">
+          <div class="level-right">
+            <a href="/trainingCustom" class="button is-warning has-text-white">Back</A>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
