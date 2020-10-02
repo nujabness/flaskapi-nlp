@@ -50,7 +50,7 @@ def upload():
             file.save(os.path.join("data",filename))
     data = pd.read_csv(filename)
     metrics = doTraining(data)
-    return render_template("training.html", title='Training', metrics=metrics)
+    return render_template("trainingCustomResponse.html", title='ResultTrainingCustom', metrics=metrics)
 
 
 @app.route("/trainingCustom")
@@ -94,7 +94,7 @@ def doTraining(data):
     pickle.dump(cls, open("model.pkl", "wb"))
 
     return {
-        "accuracy": cls.score(x_val, y_val),
+        "accuracy": round(cls.score(x_val, y_val),2)*100,
         "size": len(data['review'])
     }
 
