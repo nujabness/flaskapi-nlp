@@ -2,7 +2,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer, TfidfTransformer, C
 from nltk.stem import SnowballStemmer
 from stop_words import get_stop_words
 from nltk.corpus import stopwords
-import pandas as pd
 import pickle
 
 FR = SnowballStemmer('french')
@@ -17,14 +16,18 @@ LOADED_VEC = CountVectorizer(decode_error="replace", vocabulary=pickle.load(open
 
 VECTORIZER = TfidfVectorizer()
 
-DF=pd.read_csv('corpus.csv')
-
-
 def vectorisation(text):
     VECTORIZER.fit(text)
     return VECTORIZER.transform(text)
 
-def labelisation():
-    DF.loc[(DF.rating < 3),'rating']=0
-    DF.loc[(DF.rating > 3),'rating']=1
-    return DF['rating']
+def isLabelise(data):
+    value = data['rating'].unique()
+    if(len(value)!= 2):
+        return False
+    return True
+
+def labelisation(data):
+    if(isLabelise(data) == False):
+        data.loc[(data.rating < 3),'rating']=0
+        data.loc[(data.rating > 3),'rating']=1
+    return data['rating']
