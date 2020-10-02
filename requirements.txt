@@ -1,0 +1,5 @@
+Flask
+sklearn
+unidecode
+stop_words
+nltk
