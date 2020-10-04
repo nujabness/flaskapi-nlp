@@ -11,8 +11,10 @@
 *EL ASSOURI* | *Mohammed*|
 *TAHIR* | *Shahzaib*|
 
-#Interface
-##Les Onglets disponible
+## Interface
+
+### Les Onglets disponible
+
 -   Input
     -
 Dans l'onglet input on a un analyseur de text qui va nous répondre si le sentiment est positif ou 
@@ -27,8 +29,11 @@ Dans l'onglet training on réentraîne notre analyseur de text avec le dataset d
     -          
     Dans l'onglet training custom on réentraîne notre analyseur de text avec un dataset choisi 
 et comme pour un training normal on a par la suite quelques metrics.
-##Les routes
-###routes principales
+
+## Les routes
+
+### routes principales
+
 - path: "/entrainement"
     -
     La route "/entrainement" permet d'entrainer le model avec le corpus de base (corpus.csv). 
@@ -52,7 +57,7 @@ et comme pour un training normal on a par la suite quelques metrics.
       r=requests.post(url,data=param)
       r.json()
     ```
-##Les méthodes
+## Les méthodes
 - doTraining(data)
     -
     La méthode doTraining(data) prend en parametre le DataSet avec lequel on doit entraîner le model.
